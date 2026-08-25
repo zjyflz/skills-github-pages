@@ -1,0 +1,52 @@
+name: Build Game EXE
+on:
+  push:
+    branches: [ main ]   # main分支提交代码就触发打包
+  workflow_dispatch:      # 允许网页上手动点击运行
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置Python环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装pyinstaller
+        run: pip install pyinstaller
+
+      - name: 打包exe（tkinter游戏，无黑窗口，单文件）
+        run: pyinstaller -F -w game.py
+
+      - name: 上传构建产物（网页下载测试）
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-windows-exe
+          path: dist/game.exe
+
+      - name: 创建Release并上传exe
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
+        with:
+          tag_name: v${{ github.run_number }}
+          name: "2D生存射击小游戏 自动构建版本"
+          body: |
+            ## 🎮 游戏说明
+            Windows直接双击 `game.exe` 运行，**不需要安装Python**
+
+            ### 按键操作
+            - A / D：左右移动
+            - K：跳跃（支持二段跳）
+            - J：发射子弹
+            - 空格 Space：暂停游戏
+
+            🎯目标：存活60秒获得胜利！
+
+            > ⚠️注意：pyinstaller打包程序，杀毒软件可能误报，属于正常现象。
+          files: dist/game.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

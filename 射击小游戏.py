@@ -1,8 +1,7 @@
 import tkinter as tk 
 import time
 import random
-import math
- 
+import math 
 # ==========================================
 # 模块 2: 输入管理模块 (Input Manager)
 # ==========================================
@@ -26,8 +25,7 @@ class InputManager:
             self.pressed_keys.remove(key)
  
     def is_pressed(self, key):
-        return key in self.pressed_keys 
- 
+        return key in self.pressed_keys  
 # ==========================================
 # 模块 3: 物理与碰撞检测模块 (Physics & Collision)
 # ==========================================

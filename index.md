@@ -1,4 +1,4 @@
 ---
 title: Welcome to my blog!
 ---
-我是烛九阴放蜡烛，b站同名，欢迎访问
+我是烛九阴放蜡烛，bilibili（B站）站同名，欢迎访问

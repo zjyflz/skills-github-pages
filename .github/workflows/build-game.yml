@@ -1,7 +1,7 @@
 name: Build Game EXE
 on:
   push:
-    branches: [ main ]   # main分支提交代码就触发打包
+    branches: [ main ]   # main分支提交代码 就触发打包
   workflow_dispatch:      # 允许网页上手动点击运行
 
 jobs:

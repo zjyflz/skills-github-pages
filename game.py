@@ -281,8 +281,8 @@ class Enemy:
         self.height = 30
         self.vx = 0
         self.vy = 0
-        self.speed = 2.5
-        self.hp = 2
+        self.speed = 3
+        self.hp = 5
         self.on_ground = False
         self.active = True 
         self.canvas_id = None
@@ -373,7 +373,7 @@ class Enemy:
             bar_y = self.y - 6
             bar_bg = canvas.create_rectangle(bar_x, bar_y, bar_x + bar_w, bar_y + bar_h,
                                              fill="#34495e", outline="")
-            ratio = max(0, self.hp / 2)
+            ratio = max(0, self.hp / 5)
             if ratio > 0:
                 fill_color = "#2ecc71" if ratio > 0.5 else "#e74c3c"
                 bar_fg = canvas.create_rectangle(bar_x, bar_y,
